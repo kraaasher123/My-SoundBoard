@@ -1,0 +1,58 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "SDL Build - Debug",
+            
+            "type": "shell",
+        
+            "command": "g++",
+            "args": [
+                "-c",
+                "src/*.cpp",
+                "-std=c++14",
+                "-g",
+                "-Wall",
+                "-m64",
+                "-Iinclude",
+                "-IC:/SDL2/include",
+                "&&",
+                "g++",
+                "*.o",
+                "-o",
+                "bin/debug/main",
+                "-LC:/SDL2/lib",
+                "-lmingw32",
+                "-lSDL2main",
+                "-lSDL2",
+                "-lSDL2_image",
+                "-lSDL2_mixer",
+                "-lSDL2_ttf",
+                "&&",
+                "start",
+                "bin/debug/main.exe"
+           
+                //"-mwindows"
+            ],
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "run",
+            "type": "shell",
+            "command": "start",
+            "args": [
+                "bin/debug/main.exe"
+            ],
+            "dependsOn": [
+                "build"
+            ],
+            "problemMatcher": []
+        }
+    ]
+}
